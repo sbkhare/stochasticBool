@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key attr.name="probability" attr.type="double" for="edge" id="d0"/>
+<graph edgedefault="directed"><node id="(0, 0, 0, 0)"/>
+<node id="(0, 0, 0, 1)"/>
+<node id="(0, 0, 1, 0)"/>
+<node id="(0, 0, 1, 1)"/>
+<node id="(0, 1, 0, 0)"/>
+<node id="(0, 1, 0, 1)"/>
+<node id="(0, 1, 1, 0)"/>
+<node id="(0, 1, 1, 1)"/>
+<node id="(1, 0, 0, 0)"/>
+<node id="(1, 0, 0, 1)"/>
+<node id="(1, 0, 1, 0)"/>
+<node id="(1, 0, 1, 1)"/>
+<node id="(1, 1, 0, 0)"/>
+<node id="(1, 1, 0, 1)"/>
+<node id="(1, 1, 1, 0)"/>
+<node id="(1, 1, 1, 1)"/>
+<edge source="(0, 0, 0, 0)" target="(0, 1, 1, 1)">
+  <data key="d0">0.1014</data>
+</edge>
+<edge source="(0, 0, 0, 0)" target="(1, 1, 1, 1)">
+  <data key="d0">0.4253</data>
+</edge>
+<edge source="(0, 0, 0, 1)" target="(0, 1, 1, 1)">
+  <data key="d0">0.2195</data>
+</edge>
+<edge source="(0, 0, 0, 1)" target="(1, 1, 1, 1)">
+  <data key="d0">0.3071</data>
+</edge>
+<edge source="(0, 0, 1, 0)" target="(0, 0, 1, 1)">
+  <data key="d0">0.1129</data>
+</edge>
+<edge source="(0, 0, 1, 0)" target="(0, 1, 1, 0)">
+  <data key="d0">0.1129</data>
+</edge>
+<edge source="(0, 0, 1, 0)" target="(0, 1, 1, 1)">
+  <data key="d0">0.1579</data>
+</edge>
+<edge source="(0, 0, 1, 0)" target="(1, 1, 1, 1)">
+  <data key="d0">0.1167</data>
+</edge>
+<edge source="(0, 0, 1, 1)" target="(0, 0, 1, 1)">
+  <data key="d0">0.099</data>
+</edge>
+<edge source="(0, 0, 1, 1)" target="(0, 1, 1, 0)">
+  <data key="d0">0.099</data>
+</edge>
+<edge source="(0, 0, 1, 1)" target="(0, 1, 1, 1)">
+  <data key="d0">0.1386</data>
+</edge>
+<edge source="(0, 0, 1, 1)" target="(1, 0, 1, 1)">
+  <data key="d0">0.0972</data>
+</edge>
+<edge source="(0, 0, 1, 1)" target="(1, 1, 1, 1)">
+  <data key="d0">0.1361</data>
+</edge>
+<edge source="(0, 1, 0, 0)" target="(1, 1, 0, 0)">
+  <data key="d0">0.1563</data>
+</edge>
+<edge source="(0, 1, 0, 0)" target="(1, 1, 1, 0)">
+  <data key="d0">0.2187</data>
+</edge>
+<edge source="(0, 1, 0, 0)" target="(1, 1, 1, 1)">
+  <data key="d0">0.1617</data>
+</edge>
+<edge source="(0, 1, 0, 1)" target="(0, 1, 1, 0)">
+  <data key="d0">0.1129</data>
+</edge>
+<edge source="(0, 1, 0, 1)" target="(1, 1, 0, 0)">
+  <data key="d0">0.1129</data>
+</edge>
+<edge source="(0, 1, 0, 1)" target="(1, 1, 1, 0)">
+  <data key="d0">0.1579</data>
+</edge>
+<edge source="(0, 1, 0, 1)" target="(1, 1, 1, 1)">
+  <data key="d0">0.1167</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(0, 0, 1, 0)">
+  <data key="d0">0.0705</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0692</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(0, 1, 0, 0)">
+  <data key="d0">0.0705</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(0, 1, 1, 0)">
+  <data key="d0">0.0987</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(0, 1, 1, 1)">
+  <data key="d0">0.0969</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(1, 1, 1, 0)">
+  <data key="d0">0.073</data>
+</edge>
+<edge source="(0, 1, 1, 0)" target="(1, 1, 1, 1)">
+  <data key="d0">0.0716</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(0, 0, 1, 0)">
+  <data key="d0">0.0619</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0608</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(0, 1, 0, 0)">
+  <data key="d0">0.0619</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(0, 1, 1, 0)">
+  <data key="d0">0.0866</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(0, 1, 1, 1)">
+  <data key="d0">0.085</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(1, 1, 1, 0)">
+  <data key="d0">0.085</data>
+</edge>
+<edge source="(0, 1, 1, 1)" target="(1, 1, 1, 1)">
+  <data key="d0">0.0835</data>
+</edge>
+<edge source="(1, 0, 0, 0)" target="(1, 0, 0, 1)">
+  <data key="d0">0.2156</data>
+</edge>
+<edge source="(1, 0, 0, 0)" target="(1, 0, 1, 1)">
+  <data key="d0">0.1594</data>
+</edge>
+<edge source="(1, 0, 0, 0)" target="(1, 1, 0, 1)">
+  <data key="d0">0.1594</data>
+</edge>
+<edge source="(1, 0, 0, 1)" target="(0, 0, 0, 1)">
+  <data key="d0">0.1113</data>
+</edge>
+<edge source="(1, 0, 0, 1)" target="(1, 0, 0, 1)">
+  <data key="d0">0.1557</data>
+</edge>
+<edge source="(1, 0, 0, 1)" target="(1, 0, 1, 1)">
+  <data key="d0">0.1151</data>
+</edge>
+<edge source="(1, 0, 0, 1)" target="(1, 1, 0, 1)">
+  <data key="d0">0.1151</data>
+</edge>
+<edge source="(1, 0, 0, 1)" target="(1, 1, 1, 1)">
+  <data key="d0">0.0851</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(0, 0, 0, 0)">
+  <data key="d0">0.0695</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(0, 0, 0, 1)">
+  <data key="d0">0.0973</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0719</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(0, 1, 0, 1)">
+  <data key="d0">0.0955</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(0, 1, 1, 1)">
+  <data key="d0">0.0706</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(1, 0, 0, 1)">
+  <data key="d0">0.0719</data>
+</edge>
+<edge source="(1, 0, 1, 0)" target="(1, 1, 0, 1)">
+  <data key="d0">0.0706</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(0, 0, 0, 1)">
+  <data key="d0">0.0854</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0631</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(0, 1, 0, 1)">
+  <data key="d0">0.0838</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(0, 1, 1, 1)">
+  <data key="d0">0.062</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(1, 0, 0, 1)">
+  <data key="d0">0.0838</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(1, 0, 1, 1)">
+  <data key="d0">0.062</data>
+</edge>
+<edge source="(1, 0, 1, 1)" target="(1, 1, 0, 1)">
+  <data key="d0">0.0823</data>
+</edge>
+<edge source="(1, 1, 0, 0)" target="(1, 0, 0, 0)">
+  <data key="d0">0.1347</data>
+</edge>
+<edge source="(1, 1, 0, 0)" target="(1, 0, 0, 1)">
+  <data key="d0">0.0996</data>
+</edge>
+<edge source="(1, 1, 0, 0)" target="(1, 0, 1, 0)">
+  <data key="d0">0.1322</data>
+</edge>
+<edge source="(1, 1, 0, 0)" target="(1, 0, 1, 1)">
+  <data key="d0">0.0978</data>
+</edge>
+<edge source="(1, 1, 0, 0)" target="(1, 1, 0, 0)">
+  <data key="d0">0.0996</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(0, 0, 0, 0)">
+  <data key="d0">0.0695</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 0, 0, 0)">
+  <data key="d0">0.0973</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 0, 0, 1)">
+  <data key="d0">0.0719</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 0, 1, 0)">
+  <data key="d0">0.0955</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 0, 1, 1)">
+  <data key="d0">0.0706</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 1, 0, 0)">
+  <data key="d0">0.0719</data>
+</edge>
+<edge source="(1, 1, 0, 1)" target="(1, 1, 1, 0)">
+  <data key="d0">0.0706</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 0, 0, 0)">
+  <data key="d0">0.0739</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 0, 0, 1)">
+  <data key="d0">0.0725</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 0, 1, 0)">
+  <data key="d0">0.0725</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0712</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 1, 0, 0)">
+  <data key="d0">0.0725</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 1, 0, 1)">
+  <data key="d0">0.0712</data>
+</edge>
+<edge source="(1, 1, 1, 0)" target="(0, 1, 1, 0)">
+  <data key="d0">0.0712</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 0, 0, 0)">
+  <data key="d0">0.0648</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 0, 0, 1)">
+  <data key="d0">0.0636</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 0, 1, 0)">
+  <data key="d0">0.0636</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 0, 1, 1)">
+  <data key="d0">0.0625</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 1, 0, 0)">
+  <data key="d0">0.0636</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 1, 0, 1)">
+  <data key="d0">0.0625</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(0, 1, 1, 0)">
+  <data key="d0">0.0625</data>
+</edge>
+<edge source="(1, 1, 1, 1)" target="(1, 0, 0, 0)">
+  <data key="d0">0.0636</data>
+</edge>
+</graph></graphml>
