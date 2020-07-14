@@ -13,7 +13,7 @@ import math
 import pickle as pkl
 
 N = 4 #sys.argv[1]
-K = 3 #sys.argv[2]
+K = 2 #sys.argv[2]
 
 def err_rate(lutnum, incr):
     err_lst = np.arange(0, 0.5, incr)
@@ -30,6 +30,7 @@ def err_rate(lutnum, incr):
     ks_dets = []
     dev1_lst = []
     dev2_lst = []
+    coh_dev_lst = []
     err_lst2 = []
     
     for error in err_lst:
@@ -50,11 +51,12 @@ def err_rate(lutnum, incr):
             ks_lst.append(ks)
             stg_prob, p_thresh = pbn.stateTransitionGraph(p_max)
             stg_det = pbn.detSTG()
-            dev1, dev2 = pb.stg_deviation(N, stg_det, stg_prob)
+            dev1, dev2, det_coherency, stoch_coherency, coh_dev = pb.stg_deviation(N, pbn, stg_det, stg_prob)
             dev1_lst.append(dev1)
             dev2_lst.append(dev2)
+            coh_dev_lst.append(coh_dev)
             err_lst2.append(error)
-    return p_max_lst, p_det_lst, kr_lst, ke_lst, ks_lst, classes, kr_dets, ke_dets, ks_dets, dev1_lst, dev2_lst, err_lst2
+    return p_max_lst, p_det_lst, kr_lst, ke_lst, ks_lst, classes, kr_dets, ke_dets, ks_dets, dev1_lst, dev2_lst, coh_dev_lst, err_lst2
 
 def unique_cana(inp_num):
     ct = pkl.load(open('cana_tables/K{0}_cana_table.pkl'.format(inp_num), 'rb'))
@@ -85,10 +87,11 @@ if __name__=='__main__':
     ksd_dct = {}
     dev1_dct = {}
     dev2_dct = {}
+    coh_dev_dct = {}
     err_dct = {}
     
     for num in lutnums:
-        pm, pd, kr, ke, ks, clas, krd, ked, ksd, dev1, dev2, err = err_rate(num, incr=0.01)
+        pm, pd, kr, ke, ks, clas, krd, ked, ksd, dev1, dev2, cd, err = err_rate(num, incr=0.01)
         pm_dct[num] = pm
         pd_dct[num] = pd
         kr_dct[num] = kr
@@ -100,6 +103,7 @@ if __name__=='__main__':
         ksd_dct[num] = ksd
         dev1_dct[num] = dev1
         dev2_dct[num] = dev2
+        coh_dev_dct[num]  = cd
         err_dct[num] = err
     r, s, rs = unique_cana(K)
     
@@ -161,3 +165,11 @@ if __name__=='__main__':
     plt.title("Input Redundancy vs. Input Symmetry")
     plt.tight_layout()
     plt.savefig("error_rate/K{0}_distr_kr_ks.png".format(K))
+    
+    plt.figure()
+    for num in lutnums:
+        plt.scatter(err_dct[num], coh_dev_dct[num], label=luts[num])
+    plt.title("Stochasticity and Basin Coherence")
+    plt.xlabel("Error rate")
+    plt.ylabel("Average change in basin coherence")
+    plt.savefig("error_rate/N{1}_K{0}_coherence.png".format(K, N))

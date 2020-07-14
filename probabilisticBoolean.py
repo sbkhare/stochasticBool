@@ -149,7 +149,7 @@ def cumulativeThreshold(H, thresh, show=False):
 #    nx.draw_networkx_edge_labels(G, pos=nx.circular_layout(G))
     return G
 
-def stg_deviation(N, det_stg, stoch_stg):
+def stg_deviation(N, sbn, det_stg, stoch_stg):
     """Calculates deviation between deterministic and stochastic state transition graphs"""
     dev1 = 0 #Deterministic-transitions
     dev2 = 0 #Error-transitions
@@ -160,10 +160,54 @@ def stg_deviation(N, det_stg, stoch_stg):
             dev1 += 1 - s_edge[2]['probability']
         else:
             dev2 += s_edge[2]['probability']
-    dev1 = dev1/(2**N)#**2
-    dev2 = dev2/((2**N)**2 - 2**N)
+    dev1 = dev1/(2**N) #D-TRANSITIONS
+    dev2 = dev2/((2**N)**2 - 2**N) #E-TRANSITIONS
     print("State transition graph deviation: ", dev1, ", ", dev2)
-    return dev1, dev2
+    #ATTRACTOR ANALYSIS
+    coherency_det = {}
+    coherency_stoch = {}
+    for attr in sbn.attractors_det:
+        #JUST DO OBSERVED COHERENCY
+        basin_coh_det = 0
+        basin_coh_prob = 0
+        basin_states = set()
+        #Find set ofbasin states
+        for nd in det_stg.nodes():
+            if nx.has_path(det_stg, source=nd, target=attr[0]):
+                basin_states.add(nd)
+        #Calculate coherency of each of the basin states
+        for bs in basin_states:
+            state_coh_det = 0
+            state_coh_prob = 0
+            for i in range(sbn.N):
+                #Perturb one of the node's state
+                perturb_state = list(bs)
+                if perturb_state[i] == 1:
+                    perturb_state[i] = 0
+                else:
+                    perturb_state[i] = 1
+                perturb_state = tuple(perturb_state)
+                if perturb_state in basin_states:
+                    state_coh_det += 1
+                    for bs1 in basin_states:
+                        state_coh_prob += stoch_stg[perturb_state][bs1]['probability']
+                state_coh_det /= sbn.N
+                state_coh_prob /= sbn.N
+                basin_coh_det += state_coh_det
+                basin_coh_prob += state_coh_prob
+        basin_coh_det /= len(basin_states) + 1
+        basin_coh_prob /= len(basin_states) + 1
+        if len(attr) == 1:
+            coherency_det[attr[0]] = basin_coh_det
+            coherency_stoch[attr[0]] = basin_coh_prob
+        elif len(attr) > 1:
+            coherency_det[tuple(attr)] = basin_coh_det
+            coherency_stoch[tuple(attr)] = basin_coh_prob
+    coherency_dev = 0
+    for attr in coherency_det:
+        coherency_dev +=  coherency_stoch[attr] - coherency_det[attr]
+    coherency_dev /= len(coherency_det)
+    return dev1, dev2, coherency_det, coherency_stoch, coherency_dev #attr_leave_prob, avg_alp
     
 #Also need function for keeping edges that account for x% of probability 
 
@@ -178,6 +222,7 @@ class PBNetwork():
         self.LUT_det = {}
         self.LUT_alt = {}
         self.ct = pkl.load(open('cana_tables/K{0}_cana_table.pkl'.format(K), 'rb'))
+        self.attractors_det = []
         
     def randomizeInitState(self):
         """Randomize initial state"""
@@ -406,7 +451,6 @@ class PBNetwork():
         """Returns the determistic state transition graph"""
         G = nx.DiGraph()
         G.add_nodes_from(list(product((0,1), repeat = self.N)))
-        
         for state in G.nodes:
             newstate = []
             for adj in self.adjmat:
@@ -414,11 +458,14 @@ class PBNetwork():
                 inputs = [state[ind] for ind in input_ind[0]]
                 newstate.append(self.LUT_det[tuple(inputs)])
             G.add_edge(state, tuple(newstate))
+#            if state == tuple(newstate):
+#                self.attractors_det.append([state])
+        self.attractors_det = list(nx.simple_cycles(G))
         if show:
             plt.figure()
             nx.draw_circular(G)
             nx.draw_networkx_labels(G, pos=nx.circular_layout(G))
-        return G
+        return G     
                 
 if __name__=='__main__':
     Ni = 3
@@ -428,7 +475,7 @@ if __name__=='__main__':
 ##    pbn.randomizeLUT()
 #    pbn.biasedLUT(det=True)
 #    pbn.biasedRangeLUT(mn=0.5, mx=0.55)
-    pbn.errLUT(14, 0.1)
+    pbn.errLUT(10, 0.25)
     pmax, pdet, kr, ke, ks = pbn.deterministicLUT()
     kr, ke, ks, clas, LUT_distr = pbn.canalization(pmax=pmax, show=True, save=False)
     print("Class ", clas)
@@ -445,9 +492,9 @@ if __name__=='__main__':
     stg_det = pbn.detSTG(show=True)
 ##    print("STG LUT edges:")
 ##    print(stg_det.edges())
-    dev1, dev2 = stg_deviation(Ni, stg_det, stg_prob)
-##    stg_thresh = absoluteThreshold(stg_prob, thresh=p_thresh, show=True) #thresh=0.5 for deterministic biased and = 0.15 for probabilistic biased
-    stg_thresh = cumulativeThreshold(stg_prob, thresh=0.6, show=True)
+    dev1, dev2, det_coherency, stoch_coherency, coh_dev = stg_deviation(Ni, pbn, stg_det, stg_prob)
+    stg_thresh = absoluteThreshold(stg_prob, thresh=(0.5)**Ni, show=True) #thresh=0.5 for deterministic biased and = 0.15 for probabilistic biased
+#    stg_thresh = cumulativeThreshold(stg_prob, thresh=0.6, show=True)
 #    pmax = round(pmax, 4)
 #    pmax = str(pmax)
 #    p_thresh = round(p_thresh, 4)
