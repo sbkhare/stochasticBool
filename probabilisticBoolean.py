@@ -408,7 +408,7 @@ class PBNetwork():
         nx.draw_networkx_edge_labels(state_trans_G, pos=nx.shell_layout(state_trans_G))
         return state_trans_G
         
-    def stateTransitionGraph(self, pmax, show=False, save=False):
+    def stateTransitionGraph(self, pmax,  thresh, show=False, save=False):
         """Returns the stochastic state transition graph with transition probability as edge weights"""
         G = nx.DiGraph()
         G.add_nodes_from(list(product((0,1), repeat = self.N)))
@@ -439,7 +439,8 @@ class PBNetwork():
             print("Mean edge probability: ", np.mean(plist))
             plt.figure()
             plt.hist(plist, bins=2**self.N, color='orange') #, log=True
-            plt.title("Edge probability distribution, p_max = {0}".format(round(pmax, 4)))
+            plt.axvline(x=thresh, color='r', linestyle='dashed')
+            plt.title("Edge probability distribution")
             plt.xlabel("Edge probability")
             plt.ylabel("Count")
             plt.show()
@@ -468,14 +469,14 @@ class PBNetwork():
         return G     
                 
 if __name__=='__main__':
-    Ni = 3
-    Ki = 2
+    Ni = 4
+    Ki = 3
     pbn = PBNetwork(N=Ni, K=Ki) #Number of possible combinations of deterministic LUTs and adjacency matrixes: (2**(2**K))*(math.factorial(N-1)/math.factorial(N-1-K))**N
     pbn.createNetwork()
 ##    pbn.randomizeLUT()
 #    pbn.biasedLUT(det=True)
 #    pbn.biasedRangeLUT(mn=0.5, mx=0.55)
-    pbn.errLUT(10, 0.25)
+    pbn.errLUT(110, 0.05)
     pmax, pdet, kr, ke, ks = pbn.deterministicLUT()
     kr, ke, ks, clas, LUT_distr = pbn.canalization(pmax=pmax, show=True, save=False)
     print("Class ", clas)
@@ -483,7 +484,7 @@ if __name__=='__main__':
     print("k_e = ", ke)
     print("k_s = ", ks)
 ##    pbn.randomizeInitState()
-    stg_prob, p_thresh = pbn.stateTransitionGraph(pmax=pmax, show=True, save=False)
+    stg_prob, p_thresh = pbn.stateTransitionGraph(pmax=pmax, show=True, save=False, thresh=(0.5)**Ni)
 ##    print("STG edges and probabilities")
 ##    for edge in stg_prob.edges.data():
 ##        print(edge)
